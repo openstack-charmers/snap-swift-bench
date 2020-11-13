@@ -1,0 +1,28 @@
+name: swift-bench
+base: core18
+summary: Swift Benchmark Testing
+version: '1.0'
+description: |
+        Swift benchmarking
+grade: devel
+confinement: classic
+environment:
+  LD_LIBRARY_PATH: $SNAP/lib:$SNAP/usr/lib
+  PATH: $SNAP/bin:$PATH
+  LC_ALL: C
+
+apps:
+  swift-bench:
+    command: usr/bin/swift-bench
+    plugs:
+      - network
+
+parts:
+  swift-bench:
+    source: .
+    plugin: dump
+    stage-packages:
+      - python-swiftclient
+      - libpython2.7
+      - python-minimal
+      - swift-bench
